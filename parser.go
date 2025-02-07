@@ -33,6 +33,9 @@ type Parser struct {
 	// EnvNamespaceDelimiter separates group env namespaces and env keys
 	EnvNamespaceDelimiter string
 
+	// CfgNamespaceDelimiter separates group cfg namespaces and cfg keys
+	CfgNamespaceDelimiter string
+
 	// UnknownOptionsHandler is a function which gets called when the parser
 	// encounters an unknown option. The function receives the unknown option
 	// name, a SplitArgument which specifies its value if set with an argument
@@ -182,6 +185,7 @@ func NewNamedParser(appname string, options Options) *Parser {
 		Options:               options,
 		NamespaceDelimiter:    ".",
 		EnvNamespaceDelimiter: "_",
+		CfgNamespaceDelimiter: "_",
 	}
 
 	p.Command.parent = p

@@ -37,6 +37,9 @@ type Group struct {
 	// The environment namespace of the group
 	EnvNamespace string
 
+	// The configuration namespace of the group
+	CfgNamespace string
+
 	// If true, the group is not displayed in the help or man page
 	Hidden bool
 
@@ -292,6 +295,8 @@ func (g *Group) scanStruct(realval reflect.Value, sfield *reflect.StructField, h
 			Default:          def,
 			EnvDefaultKey:    mtag.Get("env"),
 			EnvDefaultDelim:  mtag.Get("env-delim"),
+			CfgDefaultKey:    mtag.Get("cfg"),
+			CfgDefaultDelim:  mtag.Get("cfg-delim"),
 			OptionalArgument: optional,
 			OptionalValue:    optionalValue,
 			Required:         required,

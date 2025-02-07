@@ -3,14 +3,15 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/jessevdk/go-flags"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/jessevdk/go-flags"
 )
 
 type EditorOptions struct {
-	Input  flags.Filename `short:"i" long:"input" description:"Input file" default:"-"`
+	Input  flags.Filename `short:"i" long:"input" description:"Input file" default:"-" cfg:"input"`
 	Output flags.Filename `short:"o" long:"output" description:"Output file" default:"-"`
 }
 
@@ -69,6 +70,9 @@ var options Options
 var parser = flags.NewParser(&options, flags.Default)
 
 func main() {
+
+	flags.SetConfigFile(".rm.yaml")
+
 	if _, err := parser.Parse(); err != nil {
 		switch flagsErr := err.(type) {
 		case flags.ErrorType:
